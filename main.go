@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"log"
 	"log/slog"
+	
 )
 
 func main() {
@@ -12,7 +13,10 @@ func main() {
 	mux.HandleFunc("/", handleHello)
 	mux.HandleFunc("/ping", handleStatus)
 
+	newRedisClient()
+	
 	log.Fatal(http.ListenAndServe(":8080", mux))
+	
 }
 
 func handleHello(w http.ResponseWriter, _ *http.Request) {
